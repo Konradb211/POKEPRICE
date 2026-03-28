@@ -7,29 +7,63 @@
 }
 
 body {
-    color: white;
-    background-color: #333;
+    margin: 0;
+    padding: 20px;
+    background: #0f172a; /* ciemne tło */
+    color: #e2e8f0;
+    font-family: Arial, sans-serif;
 }
 
 .wrapper {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 0 60px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
+
 .item {
-    max-width: calc((100% - (25px * 4)) / 5);
-    height: 100%;
-    width: 100%;
+    background: #1e293b; /* karta */
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
 }
 
 .item img {
-    object-fit: cover;
     width: 100%;
-    height: 100%;
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 12px;
 }
+
+.item h2 {
+    font-size: 18px;
+    margin: 10px 0 14px;
+    color: #f8fafc;
+}
+
+.prices {
+    text-align: left;
+}
+
 .price {
-    padding: 5px 0;
+    margin: 6px 0;
+    padding: 8px 10px;
+    background: #334155; /* ciemniejszy box */
+    border-radius: 8px;
+    font-size: 14px;
+    color: #cbd5f5;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price strong {
+    color: #94a3b8;
 }

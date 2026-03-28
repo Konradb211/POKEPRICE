@@ -13,7 +13,7 @@ $client = new Client([
     "base_uri" => "https://api.pokemontcg.io/v2/",
 ]);
 
-$response = $client->get("cards?q=name:ditto&pageSize=10");
+$response = $client->get("cards?q=name:ditto");
 
 $data = json_decode($response->getBody(), true);
 
@@ -32,22 +32,34 @@ $firstPokemon = $data["data"];
 
 <body>
     <div class="wrapper">
-        <?php foreach ($firstPokemon as $pokemons) {
-            $name = $pokemons["name"];
-            $smallImg = $pokemons["images"]["small"];
-            $largeImage = $pokemons["images"]["large"];
-            $prices = $pokemons["tcgplayer"]["prices"] ?? [];
-            echo "<div class='item'>";
-            echo "<img src='$smallImg' alt='$name' />";
-            foreach ($prices as $price) {
-                echo "<p class='price'>" .
-                    "cena: " .
-                    $price["market"] .
-                    "$" .
-                    "</p>";
-            }
-            echo "</div>";
-        } ?>
+        <?php foreach ($firstPokemon as $pokemon): ?>
+            <?php
+            $name = $pokemon["name"];
+            $smallImg = $pokemon["images"]["small"];
+            $prices = $pokemon["tcgplayer"]["prices"] ?? [];
+            ?>
+
+            <div class="item">
+                <img src="<?= $smallImg ?>" alt="<?= htmlspecialchars(
+    $name,
+) ?>">
+
+                <h2><?= htmlspecialchars($name) ?></h2>
+
+                <?php if (!empty($prices)): ?>
+                    <div class="prices">
+                        <?php foreach ($prices as $type => $price): ?>
+                            <p class="price">
+                                <strong><?= htmlspecialchars($type) ?>:</strong>
+                                <?= $price["market"] ?? "brak danych" ?> $
+                            </p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <p class="price">Brak cen</p>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
 </body>
 

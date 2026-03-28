@@ -1,0 +1,23 @@
+# Composer
+/vendor/
+
+# Environment variables
+.env
+
+# Docker (opcjonalnie)
+docker-compose.override.yml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Cache / temp (na przyszłość)
+tmp/
+cache/

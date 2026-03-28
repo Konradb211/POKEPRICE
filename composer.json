@@ -1,0 +1,6 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^7.10",
+        "symfony/var-dumper": "^8.0"
+    }
+}
